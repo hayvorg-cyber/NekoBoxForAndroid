@@ -67,8 +67,13 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Install NDK
-        run: sdkmanager --install "ndk;25.0.8775105"
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Verify sdkmanager and install NDK
+        run: |
+          command -v sdkmanager
+          sdkmanager --install "ndk;25.0.8775105"
 
       - name: Gradle Build
         env:
